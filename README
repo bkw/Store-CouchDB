@@ -44,6 +44,18 @@ FUNCTIONS
 
        The DB to use. This has to be set for all oprations!
 
+       authrealm
+
+       Perform authentication for this realm. (optional)
+
+       username
+
+       The username for authentication (mandatory when using authrealm)
+
+       password
+
+       The password to use for authentication (mandatory when using authrealm)
+
        method
 
        This is internal and sets the request method to be used (GET|POST)

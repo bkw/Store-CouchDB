@@ -70,6 +70,24 @@ has 'db' => (
     default  => sub { '' }
 );
 
+has 'username' => (
+    is       => 'rw',
+    required => 0,
+    default  => sub { }
+);
+
+has 'password' => (
+    is       => 'rw',
+    required => 0,
+    default  => sub { }
+);
+
+has 'authrealm' => (
+    is       => 'rw',
+    required => 0,
+    default  => sub { }
+);
+
 has 'method' => (
     is       => 'rw',
     required => 1,
@@ -522,6 +540,15 @@ sub _call {
       if ($content);
 
     my $ua  = LWP::UserAgent->new();
+    if ($self->authrealm) {
+        $ua->credentials(
+            $self->host . ':' . $self->port,
+            $self->authrealm,
+            $self->username,
+            $self->password
+        );
+    }
+
     my $res = $ua->request($req);
     print STDERR "Result: " . $res->decoded_content . "\n" if $self->is_debug;
     if ( $res->is_success ) {
