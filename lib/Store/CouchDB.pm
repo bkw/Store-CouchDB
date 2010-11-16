@@ -180,7 +180,7 @@ just a wrapper for put_doc.
 
 sub put_doc {
     my ( $self, $data ) = @_;
-    confess "Document not defiend" unless $data->{doc};
+    confess "Document not defined" unless $data->{doc};
     if ( $data->{dbname} ) {
         $self->db( $data->{dbname} );
     }
