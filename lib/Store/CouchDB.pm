@@ -206,12 +206,33 @@ sub put_doc {
     my $method = $self->method();
     if ( $data->{doc}->{_id} ) {
         $self->method('PUT');
-        $path = $self->db . '/' . $data->{doc}->{_id};
+        if (exists $data->{update_handler}) {
+            $path = sprintf(
+                '%s/_design/%s/_update/%s/%s',
+                $self->db,
+                $data->{update_handler}->{'design_doc'},
+                $data->{update_handler}->{'handler'},
+                $data->{doc}->{_id}
+            );
+        }
+        else {
+            $path = $self->db . '/' . $data->{doc}->{_id};
+        }
         delete $data->{doc}->{_id};
     }
     else {
         $self->method('POST');
-        $path = $self->db;
+        if (exists $data->{update_handler}) {
+            $path = sprintf(
+                '%s/_design/%s/_update/%s',
+                $self->db,
+                $data->{update_handler}->{'design_doc'},
+                $data->{update_handler}->{'handler'},
+            );
+        }
+        else {
+            $path = $self->db;
+        }
     }
     my $res = $self->_call( $path, $data->{doc} );
     $self->method($method);
