@@ -552,7 +552,7 @@ sub _make_view_path {
 sub _call {
     my ( $self, $path, $content ) = @_;
     my $uri = 'http://' . $self->host . ':' . $self->port . '/' . $path;
-    print STDERR "URI: $uri\n" if $self->is_debug;
+    print STDERR "URI: $uri\n" if $self->debug;
 
     my $req = HTTP::Request->new();
     $req->method( $self->method );
@@ -571,7 +571,7 @@ sub _call {
     }
 
     my $res = $ua->request($req);
-    print STDERR "Result: " . $res->decoded_content . "\n" if $self->is_debug;
+    print STDERR "Result: " . $res->decoded_content . "\n" if $self->debug;
     if ( $res->is_success ) {
         return from_json( $res->decoded_content, { allow_nonref => 1 } );
     }
