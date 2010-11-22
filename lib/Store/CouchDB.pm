@@ -96,7 +96,7 @@ has 'method' => (
 
 has 'err' => (
     is        => 'rw',
-    predicate => 'has_err',
+    predicate => 'has_error',
 );
 
 has 'purge_limit' => (
