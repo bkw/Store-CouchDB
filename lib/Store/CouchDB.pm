@@ -47,8 +47,7 @@ our $VERSION = '1.6';
 
 has 'debug' => (
     is        => 'rw',
-    required  => 1,
-    default   => sub { },
+    required  => 0,
     predicate => 'is_debug',
 );
 
