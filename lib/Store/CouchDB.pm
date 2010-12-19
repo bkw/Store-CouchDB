@@ -132,9 +132,9 @@ This is internal and sets the request method to be used (GET|POST)
 =head3 err
 
 This is set if an error has occured and can be called to get the last
-error with the 'has_error' predicate.
+error with the 'has_err' predicate.
 
-    $db->has_error
+    $db->has_err
 
 =head3 purge_limit
 
